@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table v-if="getProducts.length">
     <thead>
       <tr>
         <th>Name</th>
@@ -15,7 +15,7 @@
         <td>{{ prod.price }}</td>
         <td>{{ prod.quantity }}</td>
         <td>{{ prod.quantity * prod.price }}</td>
-        <td>Actions</td>
+        <td><ProductActions :productDetail="prod" /></td>
       </tr>
     </tbody>
   </table>
@@ -23,9 +23,13 @@
 <script>
 import { defineComponent } from "vue";
 import { mapActions, mapGetters } from "vuex";
+import ProductActions from "@components/ProductActions.vue";
 
 export default defineComponent({
   name: "CurrentShoppingList",
+  components: {
+    ProductActions,
+  },
   mounted() {
     this.fetchProducts();
   },

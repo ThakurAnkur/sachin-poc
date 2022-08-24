@@ -23,7 +23,7 @@
       placeholder="Quantity"
       v-model="formInput.quantity"
     />
-    <button type="submit" title="Add To Cart">Add To Cart</button>
+    <button type="submit" title="Add To Cart">Add To Product List</button>
   </form>
 </template>
 <script>
@@ -46,10 +46,16 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapActions({addItem: "product/addItem" }),
+    ...mapActions({ addItem: "product/addItem" }),
     addItemToCart() {
       this.addItem({ ...this.formInput });
     },
   },
 });
 </script>
+
+<style lang="scss" scoped>
+form {
+  margin: 2em 0;
+}
+</style>

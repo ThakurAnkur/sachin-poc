@@ -20,6 +20,12 @@ const mutations = {
     },
     addProductItem(state: any, payload:cartItem) {
         state.products.push(payload);
+    },
+    removeProductItem(state: any, payload: cartItem) {
+        const index = state.products.findIndex((current: cartItem) =>current.name === payload.name);
+        if(index !== -1) {
+            state.products.splice(index, 1);
+        }
     }
 }
 
@@ -37,6 +43,13 @@ const actions = {
     async addItem(context: ActionContext<any, any>, payload: cartItem) {
         try {
             context.commit('addProductItem', payload);
+        } catch (ex) {
+            console.error(ex);
+        }
+    },
+    async removeItem(context: ActionContext<any, any>, payload: cartItem) {
+        try {
+            context.commit('removeProductItem', payload);
         } catch (ex) {
             console.error(ex);
         }

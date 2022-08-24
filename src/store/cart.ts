@@ -13,7 +13,7 @@ const getters = {
     }
 };
 
-export type cartItem = {itemName: String,
+export type cartItem = {name: String,
     price: Number,
     quantity: Number,}
 
