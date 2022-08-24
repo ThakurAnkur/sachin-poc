@@ -1,20 +1,4 @@
 {
     "cartAmount": 1000,
-    "items": [
-        {
-            "name": "Rice",
-            "price": 30,
-            "quantity": 50
-        },
-        {
-            "name": "Wheat",
-            "price": 22,
-            "quantity": 10
-        },
-        {
-            "name": "Oil",
-            "price": 200,
-            "quantity": 5
-        }
-    ]
+    "items": []
 }

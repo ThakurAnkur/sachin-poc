@@ -1,3 +1,4 @@
+import { start } from 'repl';
 import { ActionContext } from 'vuex';
 import { fetchWrapper } from '../utils/fetchWrapper';
 
@@ -10,6 +11,17 @@ const state = defaultState();
 const getters = {
     getCartItemCount(state: any) {
         return state.cartDetails.items.length;
+    },
+    getCartBalance(state:any) {
+        return state.cartDetails.cartAmount;
+    },
+    estimatedCartCost(state:any) {
+        let cost = 0;
+        state.cartDetails.items.forEach((item: any)=>{
+            const currentItemCost: number = item.price * item.quantity;
+            cost = cost + currentItemCost;
+        })
+        return cost;
     }
 };
 
