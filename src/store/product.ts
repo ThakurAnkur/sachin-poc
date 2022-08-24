@@ -1,35 +1,32 @@
 import { ActionContext } from 'vuex';
 import { fetchWrapper } from '../utils/fetchWrapper';
+import { cartItem } from './cart';
 
 const defaultState = ()=>({
-    cartDetails: {cartAmount: 1000, items: [],},
+   products: [],
     
 })
 const state = defaultState();
 
 const getters = {
-    getCartItemCount(state: any) {
-        return state.cartDetails.items.length;
-    }
+    getProducts (state: any){
+        return state.products;
+    },
 };
-
-export type cartItem = {itemName: String,
-    price: Number,
-    quantity: Number,}
 
 const mutations = {
     updateState(state: any, payload: any) {
-        state.cartDetails = payload;
+        state.products = payload;
     },
-    addCartItem(state: any, payload:cartItem) {
-        state.cartDetails.items.push(payload);
+    addProductItem(state: any, payload:cartItem) {
+        state.products.push(payload);
     }
 }
 
 const actions = {
-    async initCart({commit}: any) {
+    async fetchProducts({commit}: any) {
         try {
-            const {send} = fetchWrapper('public/cart.json');
+            const {send} = fetchWrapper('public/product.json');
             const response = await send();
             const json = await response.json();
             commit('updateState', json)
@@ -39,14 +36,14 @@ const actions = {
     },
     async addItem(context: ActionContext<any, any>, payload: cartItem) {
         try {
-            context.commit('addCartItem', payload);
+            context.commit('addProductItem', payload);
         } catch (ex) {
             console.error(ex);
         }
     }
 }
 export default {
-    name: 'cart',
+    name: 'product',
     namespaced: true,
     state,
     getters,

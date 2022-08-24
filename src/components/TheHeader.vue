@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav>
-      <a href="">Home Page</a>
+      <a href="">Shopping Cart</a>
     </nav>
     <CartStatus></CartStatus>
   </header>
