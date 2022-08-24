@@ -1,5 +1,7 @@
 <template>
-  <h2>Hello World {{ value }} {{ cart.cartAmount }}</h2>
+  <div class="wrapper">
+    <h2>Hello World {{ value }} {{ cart.cartAmount }}</h2>
+  </div>
 </template>
 
 <script>
@@ -15,3 +17,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@scss/partials/_variables.scss";
+.wrapper {
+  max-width: $lg;
+  width: 100%;
+  margin: 0 auto;
+}
+</style>

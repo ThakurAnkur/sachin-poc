@@ -1,0 +1,22 @@
+@use 'sass:math';
+@mixin small-device {
+    @media (max-width: $sm) {
+        @content;
+    }
+}
+
+@mixin medium-device {
+    @media (min-width: $md) {
+        @content;
+    }
+}
+
+@mixin large-device {
+    @media (min-width: $lg) {
+        @content;
+    }
+}
+
+@function cr($size, $baseFont: $baseFontSize) {
+    @return math.div($size, $baseFont) * 1rem;
+}
