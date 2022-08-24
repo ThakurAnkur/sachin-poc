@@ -2,6 +2,7 @@
   <div class="shopping-list-wrapper">
     <AddNewItem />
     <CurrentProductList />
+    <CartList />
   </div>
 </template>
 <script>
@@ -10,6 +11,7 @@ import { mapActions } from "vuex";
 import InputField from "@components/inputs/InputField.vue";
 import AddNewItem from "@components/AddNewItem.vue";
 import CurrentProductList from "@components/CurrentProductList.vue";
+import CartList from "@components/CartList.vue";
 
 export default defineComponent({
   name: "ShoppingList",
@@ -17,6 +19,7 @@ export default defineComponent({
     InputField,
     AddNewItem,
     CurrentProductList,
+    CartList,
   },
   async mounted() {
     this.initCart();

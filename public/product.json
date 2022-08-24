@@ -1,17 +1,17 @@
 [
     {
         "name": "Rice",
-        "price": 30,
-        "quantity": 50
+        "price": 5,
+        "quantity": 2
     },
     {
         "name": "Wheat",
-        "price": 22,
-        "quantity": 10
+        "price": 4,
+        "quantity": 2
     },
     {
         "name": "Oil",
-        "price": 200,
-        "quantity": 5
+        "price": 10,
+        "quantity": 1
     }
 ]

@@ -12,6 +12,9 @@ const getters = {
     getCartItemCount(state: any) {
         return state.cartDetails.items.length;
     },
+    getCartItems(state:any) {
+        return state.cartDetails.items;
+    },
     getCartBalance(state:any) {
         return state.cartDetails.cartAmount;
     },
@@ -35,9 +38,14 @@ const mutations = {
     },
     addCartItem(state: any, payload:cartItem) {
         state.cartDetails.items.push(payload);
+    },
+    removeCartItem(state: any, payload:cartItem) {
+        const index = state.cartDetails.items.findIndex((current: cartItem) =>current.name === payload.name);
+        if(index !== -1) {
+            state.cartDetails.items.splice(index, 1);
+        }
     }
 }
-
 const actions = {
     async initCart({commit}: any) {
         try {
@@ -52,6 +60,13 @@ const actions = {
     async addItem(context: ActionContext<any, any>, payload: cartItem) {
         try {
             context.commit('addCartItem', payload);
+        } catch (ex) {
+            console.error(ex);
+        }
+    },
+    async removeItem(context: ActionContext<any, any>, payload: cartItem) {
+        try {
+            context.commit('removeCartItem', payload);
         } catch (ex) {
             console.error(ex);
         }

@@ -1,16 +1,18 @@
 <template>
   <div class="wrapper">
     <TheHeader />
-    <main>
-      <ShoppingList />
-      estimatedCartCost: {{ estimatedCartCost }} getCartBalance:
-      {{ getCartBalance }}
-      <PieChart
-        :key="chartKey"
-        :labels="['Current Cart Balance', 'Estimated Cart Cost']"
-        :datasets="getChartDataSet"
-      />
-    </main>
+    <div class="main-wrapper">
+      <main>
+        <ShoppingList />
+      </main>
+      <aside>
+        <PieChart
+          :key="chartKey"
+          :labels="['Cart Value', 'Remaning amount']"
+          :datasets="getChartDataSet"
+        />
+      </aside>
+    </div>
   </div>
 </template>
 
@@ -43,7 +45,10 @@ export default {
       this.chartKey++;
       return [
         {
-          data: [this.getCartBalance, this.estimatedCartCost],
+          data: [
+            this.estimatedCartCost,
+            this.getCartBalance - this.estimatedCartCost,
+          ],
           backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
         },
       ];
@@ -54,14 +59,28 @@ export default {
 
 <style lang="scss" scoped>
 @import "@scss/partials/_variables.scss";
+@import "@scss/partials/_mixins.scss";
 .wrapper {
   max-width: $lg;
   width: 100%;
   margin: 0 auto;
 }
 main {
-  max-width: 1000px;
+}
+.main-wrapper {
+  padding: 2rem;
+  @include medium-device {
+    max-width: 1024px;
+    margin: 2rem auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+  }
+}
+aside {
+  max-width: 400px;
   width: 100%;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 </style>

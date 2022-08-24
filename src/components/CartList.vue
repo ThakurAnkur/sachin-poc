@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Product List</h2>
+    <h2>Cart List</h2>
     <table v-if="getProducts.length">
       <thead>
         <tr>
@@ -17,7 +17,11 @@
           <td>{{ prod.price }}</td>
           <td>{{ prod.quantity }}</td>
           <td>{{ prod.quantity * prod.price }}</td>
-          <td><ProductActions :productDetail="prod" /></td>
+          <td>
+            <div>
+              <button @click="removeProduct(prod)">Delete</button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -33,14 +37,16 @@ export default defineComponent({
   components: {
     ProductActions,
   },
-  mounted() {
-    this.fetchProducts();
-  },
   computed: {
-    ...mapGetters({ getProducts: "product/getProducts" }),
+    ...mapGetters({
+      getProducts: "cart/getCartItems",
+    }),
   },
   methods: {
-    ...mapActions({ fetchProducts: "product/fetchProducts" }),
+    ...mapActions({ removeItem: "cart/removeItem" }),
+    removeProduct(product) {
+      this.removeItem(product);
+    },
   },
 });
 </script>
