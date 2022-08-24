@@ -1,0 +1,14 @@
+button {
+    background: $secondaryColor;
+    border: cr(2px) solid $primaryColor;
+    border-radius: 2em;
+    font-size: cr(18px);
+    padding: .5em 1em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:focus, &:hover {
+        box-shadow: 0 0 cr(4px);
+    }
+}
